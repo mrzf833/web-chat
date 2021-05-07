@@ -9,8 +9,15 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/auth-next": "*",
+    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/laravel-echo": "^1.1.0",
     "core-js": "^3.9.1",
-    "nuxt": "^2.15.3"
+    "cors": "^2.8.5",
+    "nuxt": "^2.15.3",
+    "nuxt-tailvue": "^1.0.90",
+    "pusher-js": "^7.0.3",
+    "vue-tailwind": "^2.2.1"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^4.0.1",

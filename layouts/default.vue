@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar/>
     <Nuxt />
   </div>
 </template>
@@ -60,3 +61,15 @@ html {
   background-color: #35495e;
 }
 </style>
+<script>
+import { mapState } from 'vuex'
+export default {
+  computed: {
+    ...mapState(['isAuth'])
+  },
+  mounted() {
+    console.log(this.isAuth);
+  },
+
+}
+</script>
