@@ -24,6 +24,7 @@ export default {
   plugins: [
     // '@/plugins/axios.js'
     // '@tailwindcss/forms'
+    {src: '@/plugins/echo.js', ssr: false}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -34,12 +35,19 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     [
-      '@nuxtjs/laravel-echo', {
-        broadcaster: 'pusher',
-        key: 'b945faec27ad2d64082a',
-        cluster: 'ap1',
-        forceTLS: true
-      }
+      '@nuxtjs/laravel-echo'
+      // , {
+      //   authEndpoint : 'http://localhost/htdocs/api-chat/public/broadcasting/auth',
+      //   auth: {
+      //     headers: {
+      //       'Autorization': this.$auth.strategy.token.get()
+      //     }
+      //   },
+      //   broadcaster: 'pusher',
+      //   key: 'b945faec27ad2d64082a',
+      //   cluster: 'ap1',
+      //   forceTLS: true,
+      // }
     ]
   ],
 
@@ -47,7 +55,6 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    ['nuxt-tailvue', {modal: true}],
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -76,7 +83,7 @@ export default {
   },
 
   axios: {
-    baseURL: 'http://api-chat.test/'
+    baseURL: 'http://localhost/htdocs/api-chat/public/'
   },
 
   router: {
