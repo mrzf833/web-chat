@@ -6,7 +6,7 @@
                 <form action="#" @submit.prevent="submit">
                     <input class="mb-4 block border-2 border-gray-400 w-full px-2 py-1 rounded-lg" type="text" name="username" placeholder="Username" v-model="auth.username">
                     <input class="mb-4 block border-2 border-gray-400 w-full px-2 py-1 rounded-lg" type="password" name="password" placeholder="Password" v-model="auth.password">
-                    <button class="block bg-blue-400 hover:bg-blue-600 text-white w-full px-2 py-1 rounded-lg" type="submit">LogIn</button>
+                    <button class="block bg-blue-400 hover:bg-blue-600 text-white w-full px-2 py-1 rounded-lg disabled:bg-gray-800" type="submit">LogIn</button>
                 </form>
             </div>
         </div>
@@ -22,7 +22,8 @@ export default {
             auth:{
                 username: null,
                 password: null
-            }
+            },
+            clickLogin: true
         }
     },
     computed: {
@@ -35,14 +36,33 @@ export default {
     },
     methods: {
         ...mapMutations(['SET_IS_AUTH']),
-        submit: async function(){
+        submit: async function(e){
+            if((this.auth.username === '' || this.auth.username == null) || (this.auth.password === '' || this.auth.password == null)){
+                return
+            }
+            if(!this.clickLogin){
+                return
+            }
+            this.clickLogin = false
+            let clickLogin = e.target
+            clickLogin = clickLogin.getElementsByTagName('button')[0]
+            clickLogin.setAttribute('disabled', 'disabled')
             try {
                 let response = await this.$auth.loginWith('local', { data: this.auth })
                 console.log(response)
                 this.SET_IS_AUTH(true)
                 this.$router.push('/message')
+                clickLogin.removeAttribute('disabled')
+                this.clickLogin = true
             } catch (err) {
+                if(err.response.status == 401){
+                    alert('silahkan memasukan data user dengan benar')
+                }else{
+                    alert('maaf terjadi kesalahan, silahkan coba lagi')
+                }
                 console.log(err)
+                clickLogin.removeAttribute('disabled')
+                this.clickLogin = true
             }
         }
     },

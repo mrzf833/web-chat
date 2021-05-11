@@ -17,5 +17,8 @@ export const actions = {
     nuxtServerInit({ commit }, context){
         commit('SET_IS_AUTH', context.app.$auth.$state.loggedIn)
         commit('SET_API_TOKEN', context.app.$auth.strategy.token.get())
+    },
+    async closeWindow(){
+        await this.$axios.get('/api/close/window')
     }
 }

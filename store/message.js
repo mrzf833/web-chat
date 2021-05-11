@@ -90,6 +90,7 @@ export const actions = {
     async getProfileData({commit}, payload){
         let response = await this.$axios.get(`/api/message/user/${payload}`)
         commit('SET_PROFILE_DATA', response.data)
+        return response
     },
 
     async getMessageData({commit}, payload){

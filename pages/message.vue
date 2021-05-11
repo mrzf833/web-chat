@@ -48,7 +48,7 @@
                             <p class="text-sm">{{ profile.terakhir_dilihat }}</p>
                         </div>
                     </div>
-                    <div class="flex items-center">
+                    <div class="flex items-center block lg:hidden">
                         <div class="w-8 h-8 rounded-full bg-red-500 text-white text-xl hover:bg-red-600 cursor-pointer" @click="kembaliSidebar">
                             <=
                         </div>
@@ -130,6 +130,7 @@ export default {
         ]),
     },
     mounted() {
+        window.addEventListener('beforeunload', this.handlerClose);
         // this.scrollStart()
         this.scrollTrigger()
         this.getContactsDataa()
@@ -199,8 +200,9 @@ export default {
         ...mapActions('contact', ['getContactsData', 'addContactDataProses',
         'addContactDataKonfirmasi', 'konfirmasiContactTolak', 'konfirmasiContactDiterima',
         'logoutContact', 'updateMessageContact', 'updateStatusContact']),
+        ...mapActions(['closeWindow']),
         ...mapMutations(['SET_IS_AUTH']),
-        ...mapMutations('contact',['DELETE_CONTACT_DATA_TOLAK']),
+        ...mapMutations('contact',['DELETE_CONTACT_DATA_TOLAK', 'UPDATE_STATUS_USER_DIMENU_USER']),
         ...mapMutations('message',['sortMessage', 'UPDATE_MESSAGE_DATA', 'UPDATE_STATUS_PROFILE']),
         ...mapActions('message', ['getProfileData', 'getMessageData', 'addMessageData', 'addSetMessageData', 'readMessageData', 'addScrollSetMessageData', 'logoutMessage']),
         async getContactsDataa(){
@@ -287,7 +289,13 @@ export default {
 
             let friend_id = contactMessage.length > 0 ? {status: true, id: contactMessage[0].friend.id} : {status: false}
             if(friend_id.status && this.messageActive !== friend_id.id){
-                await this.getProfileData(friend_id.id)
+                await this.getProfileData(friend_id.id).then((result) => {
+                    let payload = result.data
+                    this.UPDATE_STATUS_USER_DIMENU_USER({
+                        id: payload.id,
+                        status: payload.terakhir_dilihat
+                    })
+                })
                 await this.getMessageData(friend_id.id)
                 this.messageActive = friend_id.id
                 this.sortMessage('timestamp')
@@ -357,6 +365,10 @@ export default {
                 let mobile_phone_message = document.getElementById('mobile-message')
                 mobile_phone_message.classList.add('hidden')
             // --------------------------
+        },
+
+        handlerClose: function (){
+            this.closeWindow()
         }
     },
 }
