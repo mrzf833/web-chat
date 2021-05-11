@@ -6,6 +6,7 @@ export const state = () => ({
 
 export const mutations = {
     SET_PROFILE_DATA(state, payload){
+        console.log(payload);
         state.profile = payload
     },
 
@@ -15,6 +16,11 @@ export const mutations = {
 
     ADD_MESSAGE_DATA(state, payload){
         state.messages.push(payload)
+    },
+
+    MERGE_MESSAGE_DATA(state, payload){
+        let merge = state.messages.concat(payload)
+        state.messages = merge
     },
 
     sortMessage(state, sortKey) {
@@ -69,6 +75,14 @@ export const mutations = {
             // return state.messages.findIndex(v => v.id === f.id).read_at = payload.read_at
         });
         console.log(state.messages);
+    },
+
+    UPDATE_STATUS_PROFILE(state, payload){
+        let filterData = payload.filter(v => v.id == state.profile.id);
+        if(filterData.length > 0){
+            state.profile.terakhir_dilihat = filterData[0].status
+        }
+        console.log(filterData);
     }
 }
 
@@ -122,8 +136,35 @@ export const actions = {
         commit('sortMessage', 'timestamp')
     },
 
+    async addScrollSetMessageData({commit}, payload){
+        let response = await this.$axios.get(`/api/message/${payload.id}?skip=${payload.skip}`)
+        let vm = this
+        let dataChange = response.data.data.map(value => {
+            return {
+                id: value.id,
+                message: value.pesan,
+                timestamp: value.timestamp,
+                created_at: value.created_at,
+                read_at: value.read_at,
+                time: value.time,
+                as: vm.$auth.$state.user.id === value.pengirim ? 'pengirim' : 'penerima'
+            }
+        })
+        commit('MERGE_MESSAGE_DATA', dataChange)
+        commit('sortMessage', 'timestamp')
+        return response.data.data
+
+        return response.data.data.length
+    },
+
     async readMessageData({commit}, payload){
         await this.$axios.get(`/api/message/read-message/${payload}`)
+    },
+
+    logoutMessage({commit}){
+        commit('SET_PROFILE_DATA', {})
+        commit('SET_MESSAGE_DATA', [])
+        commit('sortMessage', 'timestamp')
     },
 }
 

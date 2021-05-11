@@ -51,6 +51,31 @@ export const mutations = {
     DELETE_CONTACT_DATA_KONFIRMASI(state, payload){
         let filterData = state.contactKonfirmasi.filter(v => v.id === payload);
         filterData.forEach(f => state.contactKonfirmasi.splice(state.contactKonfirmasi.findIndex(v => v.id === f.id),1));
+    },
+
+    UPDATE_MESSAGE_TERAKHIR_DIMENU_USER(state, payload){
+        let filterData = state.contacts.filter(v => v.friend.id == payload.penerima);
+        filterData.forEach(f => {
+            state.contacts[state.contacts.findIndex(v => v.friend.id == f.friend.id)].friend.as_pesan = payload.as_pesan
+            state.contacts[state.contacts.findIndex(v => v.friend.id == f.friend.id)].friend.read_at = payload.read_at
+            return state.contacts[state.contacts.findIndex(v => v.friend.id == f.friend.id)].friend.pesan_terakhir = payload.pesan_terakhir
+        });
+
+        filterData = state.contacts.filter(v => v.friend.id == payload.pengirim);
+        filterData.forEach(f => {
+            state.contacts[state.contacts.findIndex(v => v.friend.id == f.friend.id)].friend.as_pesan = payload.as_pesan
+            state.contacts[state.contacts.findIndex(v => v.friend.id == f.friend.id)].friend.read_at = payload.read_at
+            return state.contacts[state.contacts.findIndex(v => v.friend.id == f.friend.id)].friend.pesan_terakhir = payload.pesan_terakhir
+        });
+
+        // console.log(state.contacts);
+    },
+
+    UPDATE_STATUS_USER_DIMENU_USER(state, payload){
+        let filterData = state.contacts.filter(v => v.friend.id == payload.id);
+        filterData.forEach(f => {
+            return state.contacts[state.contacts.findIndex(v => v.friend.id == f.friend.id)].friend.terakhir_dilihat = payload.status
+        });
     }
 }
 
@@ -191,6 +216,50 @@ export const actions = {
         commit('DELETE_CONTACT_DATA_KONFIRMASI', newDataPengirim.id)
         commit('DELETE_CONTACT_DATA_TOLAK', newDataPengirim.id)
         commit('DELETE_CONTACT_DATA_PROSES', newDataPengirim.id)
+    },
+
+    logoutContact({commit}){
+        commit('SET_CONTACT_DATA', [])
+        commit('SET_CONTACT_DATA_KONFIRMASI', [])
+        commit('SET_CONTACT_DATA_TOLAK', [])
+        commit('SET_CONTACT_DATA_PROSES', [])
+    },
+
+    updateMessageContact({commit, state}, payload){
+        let vm = this
+        // let dataChange = {
+        //     id: payload.id,
+        //     message: payload.pesan,
+        //     timestamp: payload.timestamp,
+        //     created_at: payload.created_at,
+        //     read_at: payload.read_at,
+        //     time: payload.time,
+        //     as: vm.$auth.$state.user.id === payload.pengirim ? 'pengirim' : 'penerima'
+        // }
+        let dataChange = {
+            pengirim: payload.pengirim,
+            penerima: payload.penerima,
+            pesan_terakhir: payload.pesan,
+            read_at: payload.read_at,
+            as_pesan: vm.$auth.$state.user.id === payload.pengirim ? 'pengirim' : 'penerima',
+        }
+        console.log('jalan kah ' + dataChange['penerima']);
+        commit('UPDATE_MESSAGE_TERAKHIR_DIMENU_USER', dataChange)
+    },
+
+    async updateStatusContact({commit}){
+        try{
+            let response = await this.$axios.get(`/api/check/online`)
+            if(response.data.length > 0){
+                response.data.forEach(f => {
+                    commit('UPDATE_STATUS_USER_DIMENU_USER', f)
+                });
+            }
+            return response
+        }catch(err){
+            console.log(err);
+        }
+
     }
 }
 
@@ -204,8 +273,10 @@ export const getters = {
                     id: value.friend.id,
                     name: value.friend.name,
                     username: value.friend.username,
-                    // terakhir_dilihat: value.friend.terakhir_dilihat
-                    terakhir_dilihat: '21.50'
+                    terakhir_dilihat: value.friend.terakhir_dilihat,
+                    pesan_terakhir: value.friend.pesan_terakhir,
+                    as_pesan: value.friend.as_pesan,
+                    read_at: value.friend.read_at
                 }
             }
         })
