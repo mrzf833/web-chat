@@ -18,3 +18,6 @@ $ npm run dev
 $ npm run build
 $ npm run start
 ```
+- Setting baseURL axios di nuxt.config.js
+- Setting authEndpoint di plugins/echo.js
+- Setting data pusher di plugins/echo.js
