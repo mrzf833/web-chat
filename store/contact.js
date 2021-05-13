@@ -48,6 +48,11 @@ export const mutations = {
         filterData.forEach(f => state.contactTolak.splice(state.contactTolak.findIndex(v => v.id === f.id),1));
     },
 
+    DELETE_CONTACT_DATA_TOLAK_BY_ID_USER(state, payload){
+        let filterData = state.contactTolak.filter(v => v.friend.id === payload);
+        filterData.forEach(f => state.contactTolak.splice(state.contactTolak.findIndex(v => v.friend.id === f.friend.id),1));
+    },
+
     DELETE_CONTACT_DATA_KONFIRMASI(state, payload){
         let filterData = state.contactKonfirmasi.filter(v => v.id === payload);
         filterData.forEach(f => state.contactKonfirmasi.splice(state.contactKonfirmasi.findIndex(v => v.id === f.id),1));
@@ -115,6 +120,8 @@ export const actions = {
             let response = await this.$axios.patch(`/api/contact/konfirmasi/${payload.id}`, {
                 status: payload.status
             })
+            console.log('ini konfirmasi bawah');
+            console.log(payload);
             // dispatch('getContactsData')
             // dispatch('getContactsDataKonfirmasi')
         }catch(err){
@@ -213,8 +220,12 @@ export const actions = {
         }else{
             commit('ADD_CONTACT_DATA', newDataPenerima)
         }
+        console.log('ini data pengirim bawah');
+        console.log(newDataPengirim);
+        console.log('ini data penerima bawah');
+        console.log(newDataPenerima.friend.id);
         commit('DELETE_CONTACT_DATA_KONFIRMASI', newDataPengirim.id)
-        commit('DELETE_CONTACT_DATA_TOLAK', newDataPengirim.id)
+        commit('DELETE_CONTACT_DATA_TOLAK_BY_ID_USER', newDataPengirim.friend.id)
         commit('DELETE_CONTACT_DATA_PROSES', newDataPengirim.id)
     },
 

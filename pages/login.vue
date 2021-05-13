@@ -2,7 +2,12 @@
     <div class="bg-green-600 w-full h-screen">
         <div class="flex justify-center items-center w-full h-screen">
             <div class="bg-white px-10 py-14 rounded-lg">
-                <h1 class="text-xl mb-14">Selamat datang di aplikasi chat kami</h1>
+                <h1 class="text-xl mb-3">Selamat datang di aplikasi chat kami</h1>
+                <h1 class="text-2xl mb-3 text-center">Login</h1>
+                <div class="flex justify-center mb-7">
+                    <a href="/register" class="text-blue-600 hover:text-blue-800 underline mx-2">Register</a>
+                    <a href="/user" class="text-blue-600 hover:text-blue-800 underline mx-2">Daftar User</a>
+                </div>
                 <form action="#" @submit.prevent="submit">
                     <input class="mb-4 block border-2 border-gray-400 w-full px-2 py-1 rounded-lg" type="text" name="username" placeholder="Username" v-model="auth.username">
                     <input class="mb-4 block border-2 border-gray-400 w-full px-2 py-1 rounded-lg" type="password" name="password" placeholder="Password" v-model="auth.password">

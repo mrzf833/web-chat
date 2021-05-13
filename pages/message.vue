@@ -1,6 +1,6 @@
 <template>
     <section class="fixed h-screen block w-full lg:flex lg:flex-wrap">
-        <div class="h-full bg-green-600 lg:w-1/3 flex flex-col lg:block" id="mobile-sidebar">
+        <div class="h-full bg-green-600 lg:w-1/3 flex flex-col lg:flex lg:flex-col" id="mobile-sidebar">
             <!-- ini adalah bagian atas atau profile  -->
             <div class="p-2 flex justify-between bg-green-500">
                 <img src="~/assets/profile.jpg" class="w-12 h-12 object-cover rounded-full" alt="">
