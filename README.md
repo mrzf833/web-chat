@@ -14,7 +14,7 @@ $ npm install
 # Jika ingin development
 $ npm run dev
 
-# Jika ingin di production
+# Jika ingin production
 $ npm run build
 $ npm run start
 ```
