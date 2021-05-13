@@ -1,20 +1,23 @@
 # web-chat
 
+## Sebelum Melakukan Pemasangan Frontend chatnya silahkan terlebih dahulu melakukan Pemasangan <a href="">Api Chat</a>
+
+## Di buat menggunakan Nuxt Js
+
 ## Build Setup
 
+- Pastikan Versi Npmnya latest
 ```bash
 # install dependencies
 $ npm install
 
-# serve with hot reload at localhost:3000
+# Jika ingin development
 $ npm run dev
 
-# build for production and launch server
+# Jika ingin di production
 $ npm run build
 $ npm run start
-
-# generate static project
-$ npm run generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+- Setting baseURL axios di nuxt.config.js
+- Setting authEndpoint di plugins/echo.js
+- Setting data pusher di plugins/echo.js
