@@ -120,8 +120,8 @@ export const actions = {
             let response = await this.$axios.patch(`/api/contact/konfirmasi/${payload.id}`, {
                 status: payload.status
             })
-            console.log('ini konfirmasi bawah');
-            console.log(payload);
+            // console.log('ini konfirmasi bawah');
+            // console.log(payload);
             // dispatch('getContactsData')
             // dispatch('getContactsDataKonfirmasi')
         }catch(err){
@@ -161,7 +161,7 @@ export const actions = {
         commit('DELETE_CONTACT_DATA_PROSES', payload.id)
         commit('ADD_CONTACT_DATA_PROSES', newData)
         commit('DELETE_CONTACT_DATA_TOLAK', payload.id)
-        console.log('berhasil');
+        // console.log('berhasil');
     },
 
     // post / store tambah teman
@@ -220,10 +220,7 @@ export const actions = {
         }else{
             commit('ADD_CONTACT_DATA', newDataPenerima)
         }
-        console.log('ini data pengirim bawah');
-        console.log(newDataPengirim);
-        console.log('ini data penerima bawah');
-        console.log(newDataPenerima.friend.id);
+        // console.log('berapa kali ini');
         commit('DELETE_CONTACT_DATA_KONFIRMASI', newDataPengirim.id)
         commit('DELETE_CONTACT_DATA_TOLAK_BY_ID_USER', newDataPengirim.friend.id)
         commit('DELETE_CONTACT_DATA_PROSES', newDataPengirim.id)
@@ -254,7 +251,7 @@ export const actions = {
             read_at: payload.read_at,
             as_pesan: vm.$auth.$state.user.id === payload.pengirim ? 'pengirim' : 'penerima',
         }
-        console.log('jalan kah ' + dataChange['penerima']);
+        // console.log('jalan kah ' + dataChange['penerima']);
         commit('UPDATE_MESSAGE_TERAKHIR_DIMENU_USER', dataChange)
     },
 

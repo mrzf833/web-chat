@@ -4,14 +4,17 @@ import Cookie from 'js-cookie'
 let token = Cookie.get('token')
 window.Pusher = require('pusher-js');
         window.Echo = new Echo({
-            authEndpoint : 'http://localhost/htdocs/api-chat/public/broadcasting/auth',
-            // auth: {
-            //     headers: {
-            //         Authorization: 'Bearer ' + token
-            //     }
-            // },
+            /*
+                setting authEndpointnya
+                misalanya: http://localhost/api-chat/public/broadcasting/auth
+                atau: http://127.0.0.1:8000/broadcasting/auth
+                atau: http://api-chat.test/broadcasting/auth
+            */
+            authEndpoint : 'http://localhost/api-chat/public/broadcasting/auth',
             broadcaster: 'pusher',
-            key: 'b945faec27ad2d64082a',
-            cluster: 'ap1',
+
+            // setting data pusher. pakai petik
+            key: 'isikan keynya disini',
+            cluster: 'isikan clusternya disini',
             forceTLS: true,
         }) 

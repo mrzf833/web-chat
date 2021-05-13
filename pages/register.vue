@@ -49,7 +49,7 @@ export default {
                 alert('user berhasil di buat')
             }catch(err){
                 alert('terjadi kesalahan silahkan coba lagi')
-                console.log(err.response.data);
+                // console.log(err.response.data);
             }
             btnSubmit.removeAttribute('disabled')
             this.clickSubmit = true

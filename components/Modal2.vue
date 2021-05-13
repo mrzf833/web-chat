@@ -60,7 +60,7 @@ export default {
 
         async getContactsDataKonfirmasii(){
             await this.getContactsDataKonfirmasi()
-            console.log(this.contactKonfirmasi);
+            // console.log(this.contactKonfirmasi);
         },
 
         konfirmasi(){
@@ -70,7 +70,7 @@ export default {
         },
 
         clickCloseTambah: function(){
-            console.log('click');
+            // console.log('click');
             let modal_konfirmasi =  document.getElementById('modal-konfirmasi')
             modal_konfirmasi.style.opacity = 0
             modal_konfirmasi.style.visibility = 'hidden'
@@ -80,8 +80,8 @@ export default {
             let btn_click_terima = e.target
             btn_click_terima.setAttribute('disabled', 'disabled')
             let id = e.target.getAttribute('id-friend')
-            console.log(id);
-            console.log('terima');
+            // console.log(id);
+            // console.log('terima');
             await this.destroyKonfirmasi({
                 id: id,
                 status: 'diterima'
@@ -97,8 +97,8 @@ export default {
             let btn_click_tolak = e.target
             btn_click_tolak.setAttribute('disabled', 'disabled')
             let id = e.target.getAttribute('id-friend')
-            console.log(id);
-            console.log('tolak');
+            // console.log(id);
+            // console.log('tolak');
             await this.destroyKonfirmasi({
                 id: id,
                 status: 'ditolak'

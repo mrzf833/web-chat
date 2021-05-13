@@ -48,33 +48,17 @@ export const mutations = {
     
 
         // urutkan kembali groupnya
-
-        // messages.sort(function(date1, date2) {
-        //     return (
-        //         function(){
-        //             let s = date1[sortKey]
-        //             var b = s.split(/\D/);
-        //             return new Date(b[2], b[1]-1, b[2], b[3], b[4]);  
-        //         }
-        //         -
-        //         function(){
-        //             let s = date2[sortKey]
-        //             var b = s.split(/\D/);
-        //             return new Date(b[2], b[1]-1, b[2], b[3], b[4]); 
-        //         }
-        //     )
-        // });
         state.groupSortMessage = messages;
     },
 
     UPDATE_MESSAGE_DATA(state, payload){
-        console.log(payload);
+        // console.log(payload);
         let filterData = state.messages.filter(v => v.id === payload.id);
         filterData.forEach(f => {
             return state.messages[state.messages.findIndex(v => v.id === f.id)].read_at = payload.read_at
             // return state.messages.findIndex(v => v.id === f.id).read_at = payload.read_at
         });
-        console.log(state.messages);
+        // console.log(state.messages);
     },
 
     UPDATE_STATUS_PROFILE(state, payload){
@@ -82,7 +66,7 @@ export const mutations = {
         if(filterData.length > 0){
             state.profile.terakhir_dilihat = filterData[0].status
         }
-        console.log(filterData);
+        // console.log(filterData);
     }
 }
 
@@ -95,7 +79,7 @@ export const actions = {
 
     async getMessageData({commit}, payload){
         let response = await this.$axios.get(`/api/message/${payload}`)
-        console.log(response.data.data);
+        // console.log(response.data.data);
         let vm = this
         let dataChange = response.data.data.map(value => {
             return {

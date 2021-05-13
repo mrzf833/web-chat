@@ -22,8 +22,6 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    // '@/plugins/axios.js'
-    // '@tailwindcss/forms'
     {src: '@/plugins/echo.js', ssr: false}
   ],
 
@@ -34,21 +32,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    [
-      '@nuxtjs/laravel-echo'
-      // , {
-      //   authEndpoint : 'http://localhost/htdocs/api-chat/public/broadcasting/auth',
-      //   auth: {
-      //     headers: {
-      //       'Autorization': this.$auth.strategy.token.get()
-      //     }
-      //   },
-      //   broadcaster: 'pusher',
-      //   key: 'b945faec27ad2d64082a',
-      //   cluster: 'ap1',
-      //   forceTLS: true,
-      // }
-    ]
+    ['@nuxtjs/laravel-echo']
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -83,7 +67,11 @@ export default {
   },
 
   axios: {
-    baseURL: 'http://localhost/htdocs/api-chat/public/'
+    // masukkan url apinya
+    // misalnya : http://localhost/api-chat/public/
+    // atau : http://127.0.0.1:8000/
+    // atau : https://api-chat.test/
+    baseURL: 'http://localhost/api-chat/public/'
   },
 
   router: {

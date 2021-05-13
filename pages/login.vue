@@ -54,7 +54,7 @@ export default {
             clickLogin.setAttribute('disabled', 'disabled')
             try {
                 let response = await this.$auth.loginWith('local', { data: this.auth })
-                console.log(response)
+                // console.log(response)
                 this.SET_IS_AUTH(true)
                 this.$router.push('/message')
                 clickLogin.removeAttribute('disabled')
@@ -65,7 +65,7 @@ export default {
                 }else{
                     alert('maaf terjadi kesalahan, silahkan coba lagi')
                 }
-                console.log(err)
+                // console.log(err)
                 clickLogin.removeAttribute('disabled')
                 this.clickLogin = true
             }

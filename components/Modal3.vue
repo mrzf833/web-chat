@@ -58,7 +58,7 @@ export default {
         },
 
         clickCloseTolak: function(){
-            console.log('click');
+            // console.log('click');
             let modal_tolak =  document.getElementById('modal-tolak')
             modal_tolak.style.opacity = 0
             modal_tolak.style.visibility = 'hidden'

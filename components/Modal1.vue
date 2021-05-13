@@ -47,7 +47,7 @@ export default {
         },
 
         clickClose: function(){
-            console.log('click');
+            // console.log('click');
             let modal_tambah =  document.getElementById('modal-tambah')
             modal_tambah.style.opacity = 0
             modal_tambah.style.visibility = 'hidden'

@@ -136,16 +136,17 @@ export default {
         this.getContactsDataa()
 
         let decoded = jwt_decode(this.$auth.strategy.token.get());
-        window.Echo.leave(`App.Models.User.*`)
+        window.Echo.disconnect()
+        window.Echo.connect()
         window.Echo.connector.pusher.config.auth.headers['Authorization'] = this.$auth.strategy.token.get();
-        let oi = window.Echo.private(`App.Models.User.${decoded.sub}`)
+        window.Echo.private(`App.Models.User.${decoded.sub}`)
             .notification((notification) => {
             // console.log(notification);
             if(notification.contact !== undefined){
                 if(notification.contact.status === 'proses' && notification.contact.friend.id !== decoded.sub){
                 // ini pengirim pertemanan masuk ke proses
                 this.addContactDataProses(notification.contact)
-                console.log('tambah teman');
+                // console.log('tambah teman');
                 }else if(notification.contact.status === 'proses' && notification.contact.friend.id === decoded.sub){
                     // ini penerima pertemanan masuk ke konfirmasi
                     this.addContactDataKonfirmasi(notification.contact)
@@ -154,7 +155,7 @@ export default {
                     
                 }else if(notification.contact.status === 'diterima'){
                     this.konfirmasiContactDiterima(notification.contact)
-                    console.log('diterima');
+                    // console.log('diterima');
                     
                 }
             }
@@ -162,15 +163,15 @@ export default {
             if(notification.message !== undefined){
                 let message = notification.message
                 this.updateMessageContact(message)
-                console.log(message);
+                // console.log(message);
                 if(message.status === 'created'){
-                    console.log(this.profile.id == message.penerima );
+                    // console.log(this.profile.id == message.penerima );
                     if(this.profile.id == message.penerima || (message.penerima == this.$auth.$state.user.id && this.profile.id == message.pengirim)){
                         this.addSetMessageData(message)
                     }
                     if(message.penerima == this.$auth.$state.user.id && message.pengirim == this.profile.id){
                         this.readMessageData(this.profile.id)
-                        console.log('diterima pesannya bro');
+                        // console.log('diterima pesannya bro');
                     }
                 }else if(message.status === 'updated'){
                     this.UPDATE_MESSAGE_DATA(message)
@@ -232,7 +233,7 @@ export default {
                 // if(){
 
                 // }
-                console.log('sudah sampai batas');
+                // console.log('sudah sampai batas');
             }
             // console.log(height.scrollTop);
             // console.log(max_height);
@@ -252,7 +253,7 @@ export default {
                 this.logoutMessage()
                 clearInterval(this.interval_status)
             } catch (err) {
-                console.log(err)
+                // console.log(err)
             }
         },
 
@@ -272,7 +273,7 @@ export default {
                 this.clickMessage = true,
                 btn_submit_message.removeAttribute('disabled')
             })
-            console.log('kirim pesan');
+            // console.log('kirim pesan');
         },
 
         async clikFriend(data){
@@ -322,7 +323,7 @@ export default {
 
                 this.batasPesan = true
             }else{
-                console.log('tidak di temukan');
+                // console.log('tidak di temukan');
             }
         },
 
@@ -352,7 +353,7 @@ export default {
         },
 
         clickClose: function(index){
-            console.log('click');
+            // console.log('click');
             let modal_tambah =  document.getElementsByClassName('modal')[index]
             modal_tambah.style.opacity = 0
             modal_tambah.style.visibility = 'hidden'
