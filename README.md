@@ -1,6 +1,6 @@
 # web-chat
 
-## Sebelum Melakukan Pemasangan Frontend chatnya silahkan terlebih dahulu melakukan Pemasangan <a href="">Api Chat</a>
+## Sebelum Melakukan Pemasangan Frontend chatnya silahkan terlebih dahulu melakukan Pemasangan <a href="https://github.com/mrzf833/api-chat.git">Api Chat</a>
 
 ## Di buat menggunakan Nuxt Js
 
@@ -14,7 +14,7 @@ $ npm install
 # Jika ingin development
 $ npm run dev
 
-# Jika ingin di production
+# Jika ingin production
 $ npm run build
 $ npm run start
 ```
