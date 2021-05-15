@@ -71,7 +71,7 @@ export default {
     // misalnya : http://localhost/api-chat/public/
     // atau : http://127.0.0.1:8000/
     // atau : https://api-chat.test/
-    baseURL: 'http://localhost/api-chat/public/'
+    baseURL: 'http://127.0.0.1:8000/'
   },
 
   router: {
