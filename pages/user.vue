@@ -5,7 +5,7 @@
                 <h1 class="text-center text-2xl">Daftar User</h1>
                 <div class="flex justify-center my-5">
                     <a href="/login" class="py-3 px-2 bg-blue-600 mx-3 text-white rounded-lg hover:bg-blue-800">Login</a>
-                    <a href="/message" class="py-3 px-2 bg-yellow-600  text-white rounded-lg hover:bg-yellow-800">Message</a>
+                    <a href="/" class="py-3 px-2 bg-yellow-600  text-white rounded-lg hover:bg-yellow-800">Message</a>
                 </div>
                 <div class=" flex justify-center my-5">
                     <div class="max-w-md w-full">
@@ -16,7 +16,7 @@
                             <tbody class="border-gray-500">
                                 <tr v-for="(item, index) in users" :key="index">
                                     <td class="border border-gray-800 px-4 py-2 font-medium">
-                                        <img src="~/assets/profile.jpg" class="w-12 h-12 object-cover rounded-full inline-block" alt="">
+                                        <img src="~/assets/profile.png" class="w-12 h-12 object-cover rounded-full inline-block" alt="">
                                         <p class="inline-block ml-2">{{ item.username }}</p>
                                     </td>
                                 </tr>

@@ -36,7 +36,7 @@ export default {
     },
     mounted() {
         if(this.isAuth){
-            this.$router.push('/message')
+            this.$router.push('/')
         }
     },
     methods: {
@@ -56,7 +56,7 @@ export default {
                 let response = await this.$auth.loginWith('local', { data: this.auth })
                 // console.log(response)
                 this.SET_IS_AUTH(true)
-                this.$router.push('/message')
+                this.$router.push('/')
                 clickLogin.removeAttribute('disabled')
                 this.clickLogin = true
             } catch (err) {

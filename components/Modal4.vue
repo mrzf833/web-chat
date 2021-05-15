@@ -15,7 +15,7 @@
                     <div>
                         <template v-for="contactProses in contactProsess">
                             <div class="flex mt-4 items-center bg-gray-300 p-2 rounded-lg" :key="contactProses.id">
-                                <img src="~/assets/profile.jpg" class="w-12 h-12 object-cover rounded-full inline-block" alt="">
+                                <img src="~/assets/profile.png" class="w-12 h-12 object-cover rounded-full inline-block" alt="">
                                 <h3 class="text-xl pr-8 pl-2">{{ contactProses.friend.username }}</h3>
                                 <div>
                                     <button class="block p-1 text-sm bg-green-400 text-white rounded-lg">Proses</button>

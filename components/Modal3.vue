@@ -15,7 +15,7 @@
                     <div>
                         <template v-for="contactTolak in contactTolaks">
                             <div class="flex mt-4 items-center bg-gray-300 p-2 rounded-lg" :key="contactTolak.id">
-                                <img src="~/assets/profile.jpg" class="w-12 h-12 object-cover rounded-full inline-block" alt="">
+                                <img src="~/assets/profile.png" class="w-12 h-12 object-cover rounded-full inline-block" alt="">
                                 <h3 class="text-xl pr-8 pl-2">{{ contactTolak.friend.username }}</h3>
                                 <div>
                                     <button class="block p-1 text-sm bg-red-400 text-white rounded-lg">Tolak</button>
