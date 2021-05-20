@@ -1,5 +1,5 @@
 <template>
-    <section class="fixed h-screen block w-full lg:flex lg:flex-wrap">
+    <section class="fixed max-h-screen h-full block w-full lg:flex lg:flex-wrap">
         <div class="h-full bg-green-600 lg:w-1/3 flex flex-col lg:flex lg:flex-col" id="mobile-sidebar">
             <!-- ini adalah bagian atas atau profile  -->
             <div class="p-2 flex justify-between bg-green-500">
@@ -38,7 +38,7 @@
                 </template>
             </div>
         </div>
-        <div class="hidden w-full h-screen bg-green-700 lg:w-2/3 lg:block" id="mobile-message">
+        <div class="hidden w-full max-h-screen h-full bg-green-700 lg:w-2/3 lg:block" id="mobile-message">
             <div class="flex flex-col w-full h-full" v-show="Object.keys(profile).length > 0">
                 <div class="p-2 flex justify-between bg-green-500 border-l-2">
                     <div class="inline-block ml-4 text-white flex">
