@@ -22,6 +22,7 @@ import { mapMutations, mapState } from 'vuex'
 export default {
     layout: 'auth',
     auth: false,
+    middleware: 'isLogin',
     data() {
         return {
             auth:{
@@ -35,9 +36,6 @@ export default {
     ...mapState(['isAuth'])
     },
     mounted() {
-        if(this.isAuth){
-            this.$router.push('/')
-        }
     },
     methods: {
         ...mapMutations(['SET_IS_AUTH']),
