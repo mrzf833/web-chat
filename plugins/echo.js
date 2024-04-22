@@ -10,11 +10,11 @@ window.Pusher = require('pusher-js');
                 atau: http://127.0.0.1:8000/broadcasting/auth
                 atau: http://api-chat.test/broadcasting/auth
             */
-            authEndpoint : 'http://127.0.0.1:8000/broadcasting/auth',
+            authEndpoint : 'http://localhost:8084/broadcasting/auth',
             broadcaster: 'pusher',
 
             // setting data pusher. pakai petik
-            key: 'key pusher',
-            cluster: 'cluster pusher',
+            key: '20ae867e09501ed4b2a0',
+            cluster: 'ap1',
             forceTLS: true,
         }) 
