@@ -76,7 +76,7 @@ export default {
     // misalnya : http://localhost/api-chat/public/
     // atau : http://127.0.0.1:8000/
     // atau : https://api-chat.test/
-    baseURL: 'http://127.0.0.1:8000/'
+    baseURL: process.env.BASE_URL || 'http://127.0.0.1:8000/',
   },
 
   router: {
@@ -86,5 +86,12 @@ export default {
   server: {
     host: "0.0.0.0",
     port: process.env.PORT || 3000,
-  }
+  },
+
+  env: {
+    BASE_URL: process.env.BASE_URL,
+    PUSHER_KEY: process.env.PUSHER_KEY,
+    PUSHER_CLUSTER: process.env.PUSHER_CLUSTER,
+    PUSHER_FORCE_TLS: process.env.PUSHER_FORCE_TLS,
+},
 }

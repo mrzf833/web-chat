@@ -12,4 +12,10 @@ WORKDIR /var/www/html
 # Copy the Laravel application files into the container
 COPY . .
 
-EXPOSE 3000
+RUN cp .env.docker.example .env
+
+RUN npm install
+
+RUN npm run build
+
+CMD [ "npm", "run", "start" ]
