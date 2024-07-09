@@ -21,3 +21,12 @@ $ npm run start
 - Setting baseURL axios di nuxt.config.js
 - Setting authEndpoint di plugins/echo.js
 - Setting data pusher di plugins/echo.js
+
+
+# dengan docker
+## install
+- `sesuaikan file .env.docker.example`
+- `docker compose up -d --build`
+
+## uninstall
+- `docker compose down --rmi=all`
